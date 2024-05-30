@@ -59,7 +59,7 @@ jobs:
       - name: "Inno Setup"
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
-          path: installer-win.iss
+          path: install-win.iss
 
       - name: "Debug 2"
         run: |
