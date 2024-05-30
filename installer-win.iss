@@ -3,6 +3,7 @@
 #define MyAppPublisher "CSSNR"
 #define MyAppURL "https://cssnr.github.io/"
 #define MyAppExeName "client.exe"
+#define MyAppFolder "com.cssnr.extension.python"
 
 [Setup]
 AppId={{451A067A-06E7-4979-92EB-745C1E14AD5F}
@@ -14,13 +15,14 @@ AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 Compression=lzma
-DefaultDirName={localappdata}\com.cssnr.extension.python
-DisableDirPage=yes
+DefaultDirName={localappdata}\{#MyAppFolder}
+;DisableDirPage=yes
 DisableProgramGroupPage=yes
 DefaultGroupName={#MyAppName}
-OutputBaseFilename=installer
-OutputDir=.\dist\
+OutputBaseFilename=installer-win
+OutputDir=dist
 PrivilegesRequired=lowest
+PrivilegesRequiredOverridesAllowed=dialog
 SetupIconFile=favicon.ico
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#MyAppExeName}
@@ -31,8 +33,18 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "resources\manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "resources\manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+
+[Registry]
+Root: HKCU; Subkey: "Software\Google\Chrome\NativeMessagingHosts\{#MyAppFolder}"; ValueType: string; ValueData: "{app}\manifest-chrome.json"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Chromium\NativeMessagingHosts\{#MyAppFolder}"; ValueType: string; ValueData: "{app}\manifest-chrome.json"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Microsoft\Edge\NativeMessagingHosts\{#MyAppFolder}"; ValueType: string; ValueData: "{app}\manifest-chrome.json"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Mozilla\NativeMessagingHosts\{#MyAppFolder}"; ValueType: string; ValueData: "{app}\manifest-firefox.json"; Flags: uninsdeletekey
+Root: HKCU; Subkey: "Software\Waterfox\NativeMessagingHosts\{#MyAppFolder}"; ValueType: string; ValueData: "{app}\manifest-firefox.json"; Flags: uninsdeletekey
+
+[UninstallDelete]
+Type: files; Name: "{app}\log.txt"
