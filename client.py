@@ -5,7 +5,7 @@ import sys
 
 log_filename = 'log.txt'
 log_level = 'DEBUG'
-log_format = '%(asctime)s,%(msecs)d %(name)s %(levelname)s - %(message)s'
+log_format = '%(asctime)s %(name)s %(levelname)s - %(message)s'
 log_datefmt = '%Y-%m-%d %H:%M:%S'
 
 
