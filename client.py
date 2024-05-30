@@ -46,4 +46,3 @@ try:
 
 except Exception as error:
     logger.exception(error)
-
