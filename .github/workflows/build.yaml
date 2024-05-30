@@ -10,8 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-latest"]
-    #        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
+        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
 
     steps:
       - name: "Checkout"
@@ -24,7 +23,7 @@ jobs:
 
       - name: "Build"
         run: |
-          pip install pyinstaller
+          python -m pip install pyinstaller
           pyinstaller py-native-msg.spec
 
       - name: "Debug"
@@ -71,3 +70,13 @@ jobs:
         with:
           name: install-win
           path: out
+
+      - name: "Upload to Release"
+        uses: svenstaro/upload-release-action@v2
+        # if: ${{ github.event_name == 'release' }}
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: out/*
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
