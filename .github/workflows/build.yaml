@@ -10,7 +10,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
+        os: ["windows-latest"]
+    #        os: ["windows-latest", "ubuntu-latest", "macos-latest"]
 
     steps:
       - name: "Checkout"
@@ -34,4 +35,36 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}
+          path: dist
+
+  windows:
+    name: "Windows"
+    runs-on: windows-latest
+    timeout-minutes: 5
+    needs: build
+
+    steps:
+      - name: "Download Artifact"
+        uses: actions/download-artifact@v4
+        with:
+          name: windows-latest
+          path: artifacts
+
+      - name: "Debug"
+        run: |
+          ls -R artifacts
+
+      - name: "Inno Setup"
+        uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
+        with:
+          path: py-native-msg.spec
+
+      - name: "Debug"
+        run: |
+          ls -R
+
+      - name: "Upload to Actions"
+        uses: actions/upload-artifact@v4
+        with:
+          name: install-win
           path: dist
