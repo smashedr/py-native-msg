@@ -29,7 +29,7 @@ Tested and working in the following browsers:
 
 ## Installing
 
-Installing is not straight forward, use the installer for your operating system from a [release](/releases/latest).
+Installing is not straight forward, use the installer for your operating system from a [release](https://github.com/smashedr/python-native-messaging/releases/latest).
 
 For more information see [Building](#building) section or the Documentation/Examples above.
 
