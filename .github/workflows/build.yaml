@@ -60,7 +60,7 @@ jobs:
       - name: "Inno Setup"
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
-          path: py-native-msg.spec
+          path: installer-win.iss
 
       - name: "Debug 2"
         run: |
