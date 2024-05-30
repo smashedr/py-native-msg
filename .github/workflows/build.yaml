@@ -23,7 +23,7 @@ jobs:
 
       - name: "Debug"
         run: |
-          pip install -r requirements.txt pyinstaller
+          pip install pyinstaller
           pyinstaller --clean --console --onefile py-native-msg.spec
 
       - name: "Upload to Actions"
