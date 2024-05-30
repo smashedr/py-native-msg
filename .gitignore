@@ -1,0 +1,9 @@
+.idea/
+*.iml
+.vscode/
+**/__pycache__/
+venv/
+build/
+dist/
+.coverage
+**/*.zip
