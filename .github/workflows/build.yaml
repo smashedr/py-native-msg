@@ -7,13 +7,9 @@ on:
 
 jobs:
   build:
-    name: "Build Windows"
+    name: "Windows"
     runs-on: windows-latest
-    #runs-on: ${{ matrix.os }}
-    #strategy:
-    #  fail-fast: false
-    #  matrix:
-    #    os: ["windows-latest", "ubuntu-latest", "macos-latest"@
+    timeout-minutes: 5
 
     steps:
       - name: "Checkout"
@@ -33,29 +29,6 @@ jobs:
       - name: "Debug"
         run: |
           ls -R dist
-
-      - name: "Upload to Actions"
-        uses: actions/upload-artifact@v4
-        with:
-          name: windows-latest
-          #name: ${{ matrix.os }}
-          path: dist
-
-  windows:
-    name: "Windows Installer"
-    runs-on: windows-latest
-    timeout-minutes: 5
-    needs: build
-
-    steps:
-      - name: "Checkout"
-        uses: actions/checkout@v4
-
-      - name: "Download Artifact"
-        uses: actions/download-artifact@v4
-        with:
-          name: windows-latest
-          path: dist
 
       - name: "Inno Setup"
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
@@ -84,20 +57,13 @@ jobs:
           file_glob: true
 
   linux:
-    name: "Linux Installer"
+    name: "Linux"
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    #needs: build
 
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
-
-      #- name: "Download Artifact"
-      #  uses: actions/download-artifact@v4
-      #  with:
-      #    name: ubuntu-latest
-      #    path: dist
 
       - name: "Setup Python"
         uses: actions/setup-python@v5
