@@ -26,8 +26,8 @@ jobs:
       - name: "Build"
         run: |
           python -m pip install pyinstaller
-          python manifest.py
           pyinstaller py-native-msg.spec
+          python manifest.py
 
       - name: "Debug"
         run: |
