@@ -4,7 +4,7 @@
 block_cipher = None
 
 
-a = Analysis(['client.py'],
+a = Analysis(['src/client.py'],
              binaries=[],
              datas=[],
              hiddenimports=['pkg_resources.extern'],
@@ -37,4 +37,4 @@ exe = EXE(pyz,
           target_arch=None,
           codesign_identity=None,
           entitlements_file=None,
-          icon='favicon.ico' )
+          icon='src/favicon.ico' )

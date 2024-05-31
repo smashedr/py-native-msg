@@ -1,9 +1,11 @@
 #define MyAppName "CSSNR Native Client"
-#define MyAppVersion "0.1"
 #define MyAppPublisher "CSSNR"
 #define MyAppURL "https://cssnr.github.io/"
 #define MyAppExeName "client.exe"
 #define MyAppFolder "com.cssnr.extension.python"
+#ifndef MyAppVersion
+#define MyAppVersion "0.1"
+#endif
 
 [Setup]
 AppId={{451A067A-06E7-4979-92EB-745C1E14AD5F}
@@ -24,7 +26,7 @@ OutputBaseFilename=install-win
 OutputDir=out
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-SetupIconFile=favicon.ico
+SetupIconFile=src\favicon.ico
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#MyAppExeName}
 WizardStyle=modern
@@ -34,8 +36,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

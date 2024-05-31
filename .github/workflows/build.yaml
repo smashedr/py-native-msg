@@ -27,6 +27,7 @@ jobs:
         run: |
           python -m pip install pyinstaller
           pyinstaller py-native-msg.spec
+          python manifest.py
 
       - name: "Debug"
         run: |
@@ -54,16 +55,13 @@ jobs:
           name: windows-latest
           path: dist
 
-      - name: "Debug 1"
-        run: |
-          ls -R
-
       - name: "Inno Setup"
         uses: Minionguyjpro/Inno-Setup-Action@v1.2.2
         with:
           path: install-win.iss
+          options: "/DMyAppVersion=${{ github.ref_name }}"
 
-      - name: "Debug 2"
+      - name: "Debug"
         run: |
           ls -R out
 
