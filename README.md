@@ -29,7 +29,8 @@ Tested and working in the following browsers:
 
 ## Installing
 
-Installing is not straight forward, use the installer for your operating system from a [release](https://github.com/smashedr/python-native-messaging/releases/latest).
+Installing is not straight forward, use the installer for your operating system from
+a [release](https://github.com/smashedr/python-native-messaging/releases/latest).
 
 For more information see [Building](#building) section or the Documentation/Examples above.
 
@@ -41,6 +42,7 @@ The application is built using GitHub Actions, see [build.yaml](.github%2Fworkfl
 
 ```shell
 python -m pip install pyinstaller
+python manifest.py
 pyinstaller py-native-msg.spec
 ```
 
@@ -62,7 +64,7 @@ Manifest files must be placed in specific directories:
 - Chromium: `~/.config/chromium/NativeMessagingHosts`
 - Google Chrome: `~/.config/google-chrome/NativeMessagingHosts`
 
-If the `client` location is not writable by the user, a writable `log.txt` 
+If the `client` location is not writable by the user, a writable `log.txt`
 must be created at that location due to the current logging configuration in the app.
 
 ### MacOS Install
