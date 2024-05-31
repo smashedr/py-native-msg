@@ -36,14 +36,16 @@ For more information see [Building](#building) section or the Documentation/Exam
 
 ## Building
 
-The application is built using GitHub Actions, see [build.yaml](.github%2Fworkflows%2Fbuild.yaml) for more details.
+> [!CAUTION]
+> Build Information is OUT OF DATE!
+> See [build.yaml](.github%2Fworkflows%2Fbuild.yaml) for more details.
 
 ### App
 
 ```shell
 python -m pip install pyinstaller
+pyinstaller --noconfirm py-native-msg.spec
 python manifest.py
-pyinstaller py-native-msg.spec
 ```
 
 ### Windows Install

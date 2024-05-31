@@ -24,9 +24,9 @@ system = platform.system()
 if system == 'Windows':
     client_path = 'client.exe'
 elif system == 'Linux':
-    client_path = f'/opt/{data["name"]}/client'
+    client_path = f'/opt/{data["name"]}/client.py'
 elif system == 'Darwin':
-    client_path = f'/opt/{data["name"]}/client'
+    client_path = f'/opt/{data["name"]}/client.py'
 else:
     raise ValueError(f'Unsupported System: {system}')
 
@@ -47,6 +47,9 @@ output_chrome = os.path.join(output_dir, 'manifest-chrome.json')
 
 firefox = json.dumps(manifest_firefox, ensure_ascii=False, indent=2)
 chrome = json.dumps(manifest_chrome, ensure_ascii=False, indent=2)
+
+if not os.path.isdir(output_dir):
+    os.mkdir(output_dir)
 
 print(f'Writing Firefox to: {output_firefox}\n{firefox}')
 with open(output_firefox, 'w', encoding='utf-8') as f:

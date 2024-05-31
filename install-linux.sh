@@ -27,8 +27,8 @@ mkdir -p "${chrome}"
 mkdir -p "${chromium}"
 mkdir -p "${firefox}"
 
-cp "${SOURCE}/client" "${PACKAGE}/opt/${APP_NAME}/client"
-chmod +x "${PACKAGE}/opt/${APP_NAME}/client"
+cp "src/client.py" "${PACKAGE}/opt/${APP_NAME}/client.py"
+chmod +x "${PACKAGE}/opt/${APP_NAME}/client.py"
 touch "${PACKAGE}/opt/${APP_NAME}/log.txt"
 chmod g+w "${PACKAGE}/opt/${APP_NAME}/log.txt"
 

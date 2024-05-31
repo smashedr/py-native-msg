@@ -35,7 +35,8 @@ WizardStyle=modern
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
-Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+;Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\client\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "dist\manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "dist\manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
 
