@@ -1,7 +1,6 @@
 import json
 import os
 import platform
-# import sys
 from typing import Dict, List, Union
 
 data: Dict[Union[str, str], Union[str, List[str]]] = {
@@ -15,10 +14,6 @@ firefox_ids: List[str] = [
 chrome_ids: List[str] = [
     "nnamkjohdjofgohangnmngbclcbchmpp",
 ]
-
-# if len(sys.argv) == 1:
-#     raise ValueError('Missing Required Argument: client_path')
-# client_path = sys.argv[1]
 
 system = platform.system()
 if system == 'Windows':
