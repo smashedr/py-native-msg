@@ -24,7 +24,7 @@ OutputBaseFilename=install-win
 OutputDir=out
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-SetupIconFile=favicon.ico
+SetupIconFile=src\favicon.ico
 SolidCompression=yes
 UninstallDisplayIcon={app}\{#MyAppExeName}
 WizardStyle=modern
@@ -34,8 +34,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "dist\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\manifest-chrome.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "dist\manifest-firefox.json"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
