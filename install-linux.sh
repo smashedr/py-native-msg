@@ -30,6 +30,7 @@ mkdir -p "${firefox}"
 cp "${SOURCE}/client" "${PACKAGE}/opt/${APP_NAME}/client"
 chmod +x "${PACKAGE}/opt/${APP_NAME}/client"
 touch "${PACKAGE}/opt/${APP_NAME}/log.txt"
+chmod g+w "${PACKAGE}/opt/${APP_NAME}/log.txt"
 
 cp "${SOURCE}/manifest-chrome.json" "${chrome}/${APP_NAME}.json"
 cp "${SOURCE}/manifest-chrome.json" "${chromium}/${APP_NAME}.json"
