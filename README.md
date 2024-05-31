@@ -32,18 +32,18 @@ Tested and working in the following browsers:
 Installing is not straight forward, use the installer for your operating system from
 a [release](https://github.com/smashedr/python-native-messaging/releases/latest).
 
-For more information see [Building](#building) section or the Documentation/Examples above.
-
 ## Building
 
-The application is built using GitHub Actions, see [build.yaml](.github%2Fworkflows%2Fbuild.yaml) for more details.
+> [!CAUTION]
+> Build Information is OUT OF DATE! See [build.yaml](.github%2Fworkflows%2Fbuild.yaml) for more details.  
+> The App is only built for Windows. Linux and macOS use the python file with a shebang line for better performance.
 
 ### App
 
 ```shell
 python -m pip install pyinstaller
+pyinstaller --noconfirm py-native-msg.spec
 python manifest.py
-pyinstaller py-native-msg.spec
 ```
 
 ### Windows Install
@@ -56,7 +56,9 @@ iscc.exe install-win.iss
 
 ### Linux Install
 
-Make sure to build the [App](#app) first.
+```shell
+bash install-linux.sh
+```
 
 - Firefox: `~/.mozilla/native-messaging-hosts`
 - Chromium: `~/.config/chromium/NativeMessagingHosts`
@@ -64,11 +66,16 @@ Make sure to build the [App](#app) first.
 
 ### MacOS Install
 
-Make sure to build the [App](#app) first.
+> [!NOTE]  
+> macOS must be manually installed until an installer is created, manifest files can be generated.
+
+```shell
+python manifest.py
+```
 
 Manifest files must be renamed to: `com.cssnr.extension.python.json`
 
-Manifest key `path` must be set to the absolute path to the `client` location.
+Manifest key `path` must be set to the absolute path to the `client.py` location.
 
 Manifest files must be placed in specific directories:
 
@@ -78,3 +85,5 @@ Manifest files must be placed in specific directories:
 
 If the `client` location is not writable by the user, a writable `log.txt`
 must be created at that location due to the current logging configuration in the [client.py](src%2Fclient.py).
+
+The `client.py` must be executable by the user with Python installed and working.

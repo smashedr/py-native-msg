@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json
 import logging
 import struct
@@ -7,7 +9,6 @@ log_filename = 'log.txt'
 log_level = 'DEBUG'
 log_format = '%(asctime)s %(name)s %(levelname)s - %(message)s'
 log_datefmt = '%Y-%m-%d %H:%M:%S'
-
 
 logging.basicConfig(
     filename=log_filename,
