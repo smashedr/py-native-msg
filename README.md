@@ -48,31 +48,33 @@ pyinstaller py-native-msg.spec
 
 ### Windows Install
 
+Make sure to build the [App](#app) first.
+
 ```shell
 iscc.exe install-win.iss
 ```
 
 ### Linux Install
 
-Manifest files must be renamed to: `com.cssnr.extension.python.json.json`
-
-Manifest key `path` must be set to the absolute path to the `client` location.
-
-Manifest files must be placed in specific directories:
+Make sure to build the [App](#app) first.
 
 - Firefox: `~/.mozilla/native-messaging-hosts`
 - Chromium: `~/.config/chromium/NativeMessagingHosts`
 - Google Chrome: `~/.config/google-chrome/NativeMessagingHosts`
 
-If the `client` location is not writable by the user, a writable `log.txt`
-must be created at that location due to the current logging configuration in the app.
-
 ### MacOS Install
 
-Everything from [Linux Install](#linux-install) applies, except:
+Make sure to build the [App](#app) first.
+
+Manifest files must be renamed to: `com.cssnr.extension.python.json`
+
+Manifest key `path` must be set to the absolute path to the `client` location.
 
 Manifest files must be placed in specific directories:
 
 - Firefox: `~/Library/Application Support/Mozilla/NativeMessagingHosts`
 - Chromium: `~/Library/Application Support/Chromium/NativeMessagingHosts`
 - Google Chrome: `~/Library/Application Support/Google/Chrome/NativeMessagingHosts`
+
+If the `client` location is not writable by the user, a writable `log.txt`
+must be created at that location due to the current logging configuration in the [client.py](src%2Fclient.py).
