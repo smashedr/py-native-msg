@@ -5,20 +5,15 @@ import logging
 import struct
 import sys
 
-log_filename = 'log.txt'
-log_level = 'DEBUG'
-log_format = '%(asctime)s %(name)s %(levelname)s - %(message)s'
-log_datefmt = '%Y-%m-%d %H:%M:%S'
-
 logging.basicConfig(
-    filename=log_filename,
+    filename='log.txt',
     filemode='a',
-    format=log_format,
-    level=logging.getLevelName(log_level),
-    datefmt=log_datefmt,
+    format='%(asctime)s %(name)s %(levelname)s - %(message)s',
+    level=logging.getLevelName('DEBUG'),
+    datefmt='%Y-%m-%d %H:%M:%S',
 )
 
-logger = logging.getLogger('py-native-msg')
+logger = logging.getLogger('client')
 
 
 def read_message():
@@ -31,10 +26,11 @@ def read_message():
     return json.loads(data)
 
 
-def send_message(data):
-    string = json.dumps(data)
-    length = struct.pack('@I', len(string))
-    msg = {'length': length, 'content': string}
+def send_response(data, success=True):
+    data['success'] = success
+    text = json.dumps(data)
+    length = struct.pack('@I', len(text))
+    msg = {'length': length, 'content': text}
     sys.stdout.buffer.write(msg['length'])
     sys.stdout.write(msg['content'])
     sys.stdout.flush()
@@ -42,8 +38,9 @@ def send_message(data):
 
 try:
     message = read_message()
-    logger.debug(message)
-    send_message({'message': 'Message from Client.'})
+    logger.debug(f'message: {message}')
+    send_response({'message': 'Host Client Working.'})
 
 except Exception as error:
     logger.exception(error)
+    send_response({'message': str(error)}, False)
