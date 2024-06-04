@@ -18,4 +18,4 @@ mv "${DEST}/manifest-chrome.json" "${DEST}/chrome/${APP_NAME}.json"
 
 packagesbuild client.pkgproj
 mkdir out
-mv "build/hls-downloader-client.pkg" "out/install-macos.pkg"
+mv "build/${APP_NAME}.pkg" "out/install-macos.pkg"
