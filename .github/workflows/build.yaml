@@ -52,6 +52,15 @@ jobs:
           overwrite: true
           file_glob: true
 
+      - name: "VirusTotal Scan"
+        uses: crazy-max/ghaction-virustotal@v4
+        if: ${{ github.event_name == 'release' }}
+        with:
+          vt_api_key: ${{ secrets.VT_API_KEY }}
+          update_release_body: true
+          files: |
+            out/*
+
   linux:
     name: "Linux"
     runs-on: ubuntu-latest
@@ -90,6 +99,15 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
+
+      - name: "VirusTotal Scan"
+        uses: crazy-max/ghaction-virustotal@v4
+        if: ${{ github.event_name == 'release' }}
+        with:
+          vt_api_key: ${{ secrets.VT_API_KEY }}
+          update_release_body: true
+          files: |
+            out/*
 
   macos:
     name: "macOS"
@@ -138,3 +156,12 @@ jobs:
           tag: ${{ github.ref }}
           overwrite: true
           file_glob: true
+
+      - name: "VirusTotal Scan"
+        uses: crazy-max/ghaction-virustotal@v4
+        if: ${{ github.event_name == 'release' }}
+        with:
+          vt_api_key: ${{ secrets.VT_API_KEY }}
+          update_release_body: true
+          files: |
+            out/*
