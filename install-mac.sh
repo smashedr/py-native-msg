@@ -10,12 +10,12 @@ ls -lah "${DEST}"
 
 touch "${DEST}/log.txt"
 
-mkdir "${DEST}/firefox"
-mkdir "${DEST}/chrome"
+mkdir -p "${DEST}/firefox"
+mkdir -p "${DEST}/chrome"
 
-mv "${DEST}/manifest-firefox.json" "${DEST}/firefox/${APP_NAME}.json"
-mv "${DEST}/manifest-chrome.json" "${DEST}/chrome/${APP_NAME}.json"
+cp -f "${DEST}/manifest-firefox.json" "${DEST}/firefox/${APP_NAME}.json"
+cp -f "${DEST}/manifest-chrome.json" "${DEST}/chrome/${APP_NAME}.json"
 
 packagesbuild client.pkgproj
-mkdir out
+mkdir -p out
 mv "build/${APP_NAME}.pkg" "out/install-macos.pkg"
