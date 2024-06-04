@@ -29,61 +29,70 @@ Tested and working in the following browsers:
 
 ## Installing
 
-Installing is not straight forward, use the installer for your operating system from
-a [release](https://github.com/smashedr/python-native-messaging/releases/latest).
+Download and run the installer for your operating system from the latest
+[release](https://github.com/smashedr/python-native-messaging/releases/latest).
 
 ## Building
 
-> [!CAUTION]
-> Build Information is OUT OF DATE! See [build.yaml](.github%2Fworkflows%2Fbuild.yaml) for more details.  
-> The App is only built for Windows. Linux and macOS use the python file with a shebang line for better performance.
+### Windows
 
-### App
+Build the App:
 
 ```shell
 python -m pip install pyinstaller
-pyinstaller --noconfirm py-native-msg.spec
+pyinstaller --noconfirm client.spec
 python manifest.py
 ```
 
-### Windows Install
-
-Make sure to build the [App](#app) first.
+Create the Installer:
 
 ```shell
-iscc.exe install-win.iss
+iscc.exe client.iss
 ```
 
-### Linux Install
+### Linux
 
 ```shell
+python manifest.py
 bash install-linux.sh
 ```
 
-- Firefox: `~/.mozilla/native-messaging-hosts`
-- Chromium: `~/.config/chromium/NativeMessagingHosts`
-- Google Chrome: `~/.config/google-chrome/NativeMessagingHosts`
-
-### MacOS Install
+### MacOS
 
 > [!NOTE]  
-> macOS must be manually installed until an installer is created, manifest files can be generated.
+> The macOS installer uses [Packages](http://s.sudre.free.fr/Software/Packages/about.html)
+> which must be manually installed.
+
+Build the App:
 
 ```shell
+python -m pip install pyinstaller
+pyinstaller --noconfirm client.spec
 python manifest.py
 ```
 
-Manifest files must be renamed to: `com.cssnr.extension.python.json`
+Create the Package:
 
-Manifest key `path` must be set to the absolute path to the `client.py` location.
+```shell
+bash install-mac.sh
+```
+
+## More Info
+
+Windows requires corresponding registry entries for the manifest files (see location links below).
+
+Windows and macOS requires packaging the app with `pyinstaller` to bundle python.
+
+Manifest files must be renamed to `org.cssnr.extension.python.json` on Linux and macOS.
+
+Manifest key `path` must be set to the absolute path to the `client` location.
 
 Manifest files must be placed in specific directories:
 
-- Firefox: `~/Library/Application Support/Mozilla/NativeMessagingHosts`
-- Chromium: `~/Library/Application Support/Chromium/NativeMessagingHosts`
-- Google Chrome: `~/Library/Application Support/Google/Chrome/NativeMessagingHosts`
+- Firefox: https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Native_manifests#manifest_location
+- Chrome: https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging#native-messaging-host-location
 
-If the `client` location is not writable by the user, a writable `log.txt`
+If the `client` location is not writable by the user and a writable `log.txt`
 must be created at that location due to the current logging configuration in the [client.py](src%2Fclient.py).
 
 The `client.py` must be executable by the user with Python installed and working.

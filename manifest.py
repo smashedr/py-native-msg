@@ -3,17 +3,23 @@ import os
 import platform
 from typing import Dict, List, Union
 
+# Configuration
+
 data: Dict[Union[str, str], Union[str, List[str]]] = {
-    "name": "com.cssnr.extension.python",
-    "description": "Python Native Messaging Client",
+    "name": "org.cssnr.extension.python",
+    "description": "HLS Video Downloader Client",
     "type": "stdio",
 }
 firefox_ids: List[str] = [
-    "web-enhancer@cssnr.com",
+    "hls-video-downloader@cssnr.com",
 ]
 chrome_ids: List[str] = [
-    "nnamkjohdjofgohangnmngbclcbchmpp",
+    "mpmiiaolodhanoalpjncddpmnkbjicbo",
 ]
+
+output_dir = 'dist'
+name_firefox = 'manifest-firefox.json'
+name_chrome = 'manifest-chrome.json'
 
 system = platform.system()
 if system == 'Windows':
@@ -21,13 +27,14 @@ if system == 'Windows':
 elif system == 'Linux':
     client_path = f'/opt/{data["name"]}/client.py'
 elif system == 'Darwin':
-    client_path = f'/opt/{data["name"]}/client.py'
+    client_path = f'/opt/{data["name"]}/client'
 else:
     raise ValueError(f'Unsupported System: {system}')
 
+# Script
+
 print(f'Using client path: {client_path}')
 data['path'] = client_path
-output_dir = 'dist'
 
 manifest_firefox = data.copy()
 manifest_firefox['allowed_extensions'] = firefox_ids
@@ -37,8 +44,8 @@ manifest_chrome['allowed_origins'] = []
 for _id in chrome_ids:
     manifest_chrome['allowed_origins'].append(f'chrome-extension://{_id}/')
 
-output_firefox = os.path.join(output_dir, 'manifest-firefox.json')
-output_chrome = os.path.join(output_dir, 'manifest-chrome.json')
+output_firefox = os.path.join(output_dir, name_firefox)
+output_chrome = os.path.join(output_dir, name_chrome)
 
 firefox = json.dumps(manifest_firefox, ensure_ascii=False, indent=2)
 chrome = json.dumps(manifest_chrome, ensure_ascii=False, indent=2)

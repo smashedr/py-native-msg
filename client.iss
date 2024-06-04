@@ -1,14 +1,14 @@
-#define MyAppName "CSSNR Native Client"
+#define MyAppName "Native Messaging Client"
 #define MyAppPublisher "CSSNR"
 #define MyAppURL "https://cssnr.github.io/"
 #define MyAppExeName "client.exe"
-#define MyAppFolder "com.cssnr.extension.python"
+#define MyAppFolder "org.cssnr.extension.python"
 #ifndef MyAppVersion
 #define MyAppVersion "0.1"
 #endif
 
 [Setup]
-AppId={{451A067A-06E7-4979-92EB-745C1E14AD5F}
+AppId={{14C1A0BA-BD81-473B-8179-5AF0FA126E5E}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} {#MyAppVersion}

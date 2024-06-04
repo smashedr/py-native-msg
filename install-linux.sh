@@ -2,7 +2,8 @@
 
 set -e
 
-APP_NAME="com.cssnr.extension.python"
+APP_NAME="org.cssnr.extension.python"
+PKG_NAME="${APP_NAME}"
 SOURCE="dist"
 
 if [ "${GITHUB_EVENT_NAME}" == "release" ];then
@@ -11,7 +12,7 @@ else
     VERSION="0.1"
 fi
 
-PACKAGE="${APP_NAME}_${VERSION}"
+PACKAGE="${PKG_NAME}_${VERSION}"
 
 echo "SOURCE: ${SOURCE}"
 ls -lah "${SOURCE}"
@@ -37,7 +38,7 @@ cp "${SOURCE}/manifest-chrome.json" "${chromium}/${APP_NAME}.json"
 cp "${SOURCE}/manifest-firefox.json" "${firefox}/${APP_NAME}.json"
 
 cat <<-EOF > "${PACKAGE}/DEBIAN/control"
-Package: ${APP_NAME}
+Package: ${PKG_NAME}
 Version: ${VERSION}
 Section: base
 Priority: optional

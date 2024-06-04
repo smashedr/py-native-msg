@@ -1,7 +1,7 @@
 {
-  "name": "com.cssnr.extension.python",
+  "name": "org.cssnr.extension.python",
   "description": "Python Native Messaging Client",
   "path": "client.exe",
   "type": "stdio",
-  "allowed_extensions": ["web-enhancer@cssnr.com"]
+  "allowed_extensions": ["hls-video-downloader@cssnr.com"]
 }
