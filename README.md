@@ -36,6 +36,10 @@ Download and run the installer for your operating system from the latest
 
 ### Windows
 
+> [!NOTE]  
+> The Windows installer uses [Inno Setup](https://jrsoftware.org/isinfo.php)
+> which must be manually installed.
+
 Build the App:
 
 ```shell
@@ -54,7 +58,7 @@ iscc.exe client.iss
 
 ```shell
 python manifest.py
-bash install-linux.sh
+bash build-linux.sh
 ```
 
 ### MacOS
@@ -74,7 +78,7 @@ python manifest.py
 Create the Package:
 
 ```shell
-bash install-mac.sh
+bash build-mac.sh
 ```
 
 ## More Info
